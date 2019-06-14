@@ -9,4 +9,5 @@ WORKDIR $GOPATH/src/nice-example
 
 RUN make build
 
-ENTRYPOINT ["cmd/nice-example", "-c $GOPATH/src/cmd/config.yaml", "all"]
+
+ENTRYPOINT ["cmd/nice-example", "-c", "/go/src/nice-example/cmd/config.yaml", "all"]

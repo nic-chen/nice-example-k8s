@@ -9,25 +9,25 @@ serverhost: ''
 serverport: '50001'
 servercheckttl: 30
 #留空不使用
-etcd: http://127.0.0.1:2379
+etcd: http://172.16.180.251:2379
 jaeger: 127.0.0.1:6831
 mysql:
   database: mz_qing
   charset: utf8
   master:
-    host: 172.16.180.24
-    user: tmpdump
+    host: 172.16.196.117:6001
+    user: root
     password: meizu.com
     maxopen: 100
     maxidle: 10
   slaves:
-    host: 172.16.180.24
-    user: tmpdump
+    host: 172.16.196.117:6001
+    user: root
     password: meizu.com
     maxopen: 100
     maxidle: 10
 redis:
-  host: 127.0.0.1:6379
+  host: 172.16.180.232:6379
   password: ''
   index: 0
   prefix: exmp_
