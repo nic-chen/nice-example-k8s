@@ -4,13 +4,13 @@ httpbind: 0.0.0.0:8202
 pprofbind: localhost:2045
 clientname: member-cli
 #"localhost:50001" //"member-srv"  //不使用服务发现时，服务名改成host:port即可
-servername: localhost:50001
-serverhost: ''
+servername: member-srv
+serverhost: '0.0.0.0'
 serverport: '50001'
 servercheckttl: 30
 #留空不使用
 etcd: http://172.16.180.251:2379
-jaeger: 127.0.0.1:6831
+jaeger: ''  #127.0.0.1:6831
 mysql:
   database: mz_qing
   charset: utf8

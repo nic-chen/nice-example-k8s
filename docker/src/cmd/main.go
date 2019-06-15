@@ -44,10 +44,11 @@ func main() {
 
 	config := nice.LoadConfig(conf)
 
-	if constant.APP_NAME != "" && config["serverhost"].(string) != "" && config["serverport"].(string) != "" && config["etcd"].(string) != "" {
+	if constant.APP_NAME != "" && config["serverport"].(string) != "" && config["etcd"].(string) != "" {
+		serverip := getInternalIP()
 		options := &registry.Options{
 			Name: constant.APP_NAME,
-			Host: config["serverhost"].(string),
+			Host: serverip,
 			Port: config["serverport"].(string),
 			TTL:  config["servercheckttl"].(int),
 			Ssrv: config["etcd"].(string),
@@ -77,4 +78,23 @@ func main() {
 	}()
 
 	srv.RunAll(register, tracer, config)
+}
+
+//获取本容器的内网IP
+func getInternalIP() string {
+	ip := ""
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		return ip
+	}
+
+	for _, address := range addrs {
+		if ipnet, ok := a.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				ip = ipnet.IP.String()
+			}
+		}
+	}
+
+	return ip
 }
